@@ -5,8 +5,11 @@ let Footer = {
     const show = path === '#' || path === '' || path === 'login'? 'absolute' : 'relative';
 
     let view = `
-    <footer class="footer" style="position: ${show}">
-      <h6 class="footer--title text-white">Account CopyRight 2021.</h6>
+    <footer class="footer">
+      <p class="footer--title text-white">AccountBank CopyRight 2021.</p>
+      <div class="footer--logo">
+        <span class="purple--text">Acc</span>ount
+      </div>
     </footer>
     `;
     return view;
