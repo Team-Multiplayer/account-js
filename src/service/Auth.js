@@ -23,4 +23,9 @@ const storeData = (userData) => {
 
 }
 
-export { isAuth, clearStorage, redirectTo, storeData };
+const isAuthenticated = () => {
+  // se tiver a token então está logado senão não está
+  return (localStorage.getItem("@token")) ? true : false;
+}
+
+export { isAuth, clearStorage, redirectTo, storeData, isAuthenticated };

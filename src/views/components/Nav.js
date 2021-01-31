@@ -1,4 +1,4 @@
-import { redirectTo } from '../../service/Auth.js';
+import { redirectTo, clearStorage, isAuthenticated } from '../../service/Auth.js';
 
 let Header = {
   render: async () => {
@@ -12,10 +12,20 @@ let Header = {
           <!-- <div class="header--logo">Account</div> -->
         </a>
         <div class="header--nav">
-        <a class="navbar-link text-dark" id="loginLink">Login</a>
-        <a class="navbar-link text-dark" id="registerLink">Cadastrar</a>
-        <a class="navbar-link text-dark" id="dashButton">DashBoard</a>
-          <a class="navbar-link text-dark" id="logoutLink">Logout</a>
+          ${
+            (!isAuthenticated()) ?
+            `
+            <a class="navbar-link text-dark" id="loginLink">Login</a>
+            <a class="navbar-link text-dark" id="registerLink">Cadastrar</a>
+            ` : ``
+          }
+          ${
+            (isAuthenticated()) ?
+            `
+            <a class="navbar-link text-dark" id="dashButton">DashBoard</a>
+            <a class="navbar-link text-dark" id="logoutLink">Logout</a>
+            ` : ``
+          }
         </div>
       </div>
     </header>
@@ -24,31 +34,43 @@ let Header = {
     return view;
   },
   after_render: async () => {
-    const homeLink =        '' || document.getElementById('homeLink');
-    const dashboardButton = '' || document.getElementById('dashButton');
-    const registerButton =  '' || document.getElementById('registerLink');
-    const logoutButton =    '' || document.getElementById('logoutLink');
-    const loginButton =     '' || document.getElementById('loginLink');
 
-    homeLink.addEventListener('click', () => {
+    // pega os elementos link
+    const homeLink =        null || document.getElementById('homeLink');
+    const dashboardButton = null || document.getElementById('dashButton');
+    const registerButton =  null || document.getElementById('registerLink');
+    const logoutButton =    null || document.getElementById('logoutLink');
+    const loginButton =     null || document.getElementById('loginLink');
+
+    // se encontrou o elemento link, adiciona o evento de click
+    homeLink && homeLink.addEventListener('click', () => {
+      // direciona para a home
       redirectTo('');
     })
 
-    logoutButton && dashboardButton.addEventListener('click', () => {
+    // se encontrou o elemento link, adiciona o evento de click
+    dashboardButton && dashboardButton.addEventListener('click', () => {
+      // direciona para o dashboard
       redirectTo('dashboard');
     })
 
+    // se encontrou o elemento link, adiciona o evento de click
     logoutButton && logoutButton.addEventListener('click', () => {
+      // apaga os dados guadados
       clearStorage();
-      redirectTo('');
-      window.location.reload();
+      // direciona para a home
+      redirectTo('login');
     })
 
-    loginButton && registerButton.addEventListener('click', () => {
+    // se encontrou o elemento link, adiciona o evento de click
+    registerButton && registerButton.addEventListener('click', () => {
+      // direciona para o signup
       redirectTo('signup');
     })
 
+    // se encontrou o elemento link, adiciona o evento de click
     loginButton && loginButton.addEventListener('click', () => {
+      // direciona para o login
       redirectTo('login');
     })
   }
