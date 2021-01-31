@@ -12,14 +12,14 @@ let Header = {
           <!-- <div class="header--logo">Account</div> -->
         </a>
         <div class="header--nav">
-          ${
+          ${ // exibe os menus quando não está logado
             (!isAuthenticated()) ?
             `
             <a class="navbar-link text-dark" id="loginLink">Login</a>
             <a class="navbar-link text-dark" id="registerLink">Cadastrar</a>
             ` : ``
           }
-          ${
+          ${ // exibe os menus quando está logado
             (isAuthenticated()) ?
             `
             <a class="navbar-link text-dark" id="dashButton">DashBoard</a>
