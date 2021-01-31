@@ -112,14 +112,20 @@ let Home = {
   },
   after_render: async () => {
 
-    const registerButton =  '' || document.getElementById('homeRegisterLink');
+    // pega o elemento link de signup da home
+    const registerButton =  null || document.getElementById('homeRegisterLink');
+    // se encontrou o link,  adiciona o evento de click
     registerButton && registerButton.addEventListener('click', () => {
+      // direciona para o signup
       redirectTo('signup');
     })
 
-    const loginLinks =     '' || document.querySelectorAll('.loginLink');
-    loginLinks.forEach(loginLink => {
+    // pega os elementos link de login da home
+    const loginLinks = null || document.querySelectorAll('.loginLink');
+    // se encontrou os links, faz um loop por cada um e adiciona o evento de click
+    loginLinks && loginLinks.forEach(loginLink => {
       loginLink.addEventListener('click', () => {
+        // direciona para o login
         redirectTo('login');
       })
     });

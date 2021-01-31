@@ -130,14 +130,8 @@ let Login = {
         axios.post(`${baseURL}login`, userLogin).then( res => {
           // se o POST obteve sucesso
           if (res.status == 200) { // SUCESSO 🎉
-
-            // pega o token e o objeto usuario da resposta da API
-            let { token, usuario } = res.data;
-
-            // guarda o token no localStorage
-            localStorage.setItem("@token", token);
-            // guarda o usuário no localStorage em forma de string
-            localStorage.setItem("@usuario", JSON.stringify(usuario));
+            // salva as informações retornadas da API
+            storeData(res.data)
             // redireciona para o dashboard
             redirectTo('dashboard')
           }
