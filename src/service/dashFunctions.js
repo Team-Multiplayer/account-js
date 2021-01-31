@@ -3,7 +3,7 @@ import {dashBoardParam, planosContaParam, pagamentoParam, transferenciaParam } f
 
 const userData = JSON.parse(localStorage.getItem('@usuario'));
 const token = localStorage.getItem('@token');
-// console.log(userData);
+console.log(userData);
 let defaultHeader = {
   headers: {
     "Content-Type": "application/json",

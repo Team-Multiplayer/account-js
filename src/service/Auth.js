@@ -20,7 +20,7 @@ const redirectTo = (path) => {
 const storeData = (userData) => {
   console.log(userData)
   const {token, conta, usuario} = userData;
-  localStorage.setItem('usuario', JSON.stringify(usuario));
+  localStorage.setItem('@usuario', JSON.stringify(usuario));
   localStorage.setItem('conta', JSON.stringify(conta));
   localStorage.setItem('@token', token);
 }
