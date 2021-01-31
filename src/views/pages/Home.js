@@ -1,3 +1,4 @@
+import { redirectTo } from '../../service/Auth.js';
 import imgProfit from "../../img/home-3.png";
 
 let Home = {
@@ -6,7 +7,7 @@ let Home = {
     <section class="banner top--offset">
       <div class="banner--box">
         <h1 class="text-white">O melhor banco para você.</h1>
-        <a class="banner--button" href="signup.html">Cadastrar Agora!</a>
+        <a class="banner--button" id="homeRegisterLink">Cadastrar Agora!</a>
       </div>
     </section>
 
@@ -63,42 +64,42 @@ let Home = {
           <div class="gallery--card col-md-3">
             <h3 class="gallery--card-title">Transferências</h3>
             <p class="gallery--card-text">TED, DOC e Pix.</p>
-            <a class="gallery--card-button" href="login.html">
+            <a class="gallery--card-button loginLink">
               <span>Acessar</span>
             </a>
           </div>
           <div class="gallery--card col-md-3">
             <h3 class="gallery--card-title">Depósitos</h3>
             <p class="gallery--card-text">Dia e Noite disponível para você.</p>
-            <a class="gallery--card-button" href="login.html">
+            <a class="gallery--card-button loginLink">
               <span>Acessar</span>
             </a>
           </div>
           <div class="gallery--card col-md-3">
             <h3 class="gallery--card-title">Pagamentos</h3>
             <p class="gallery--card-text">Disponibilidade na palma da sua mão.</p>
-            <a class="gallery--card-button" href="login.html">
+            <a class="gallery--card-button loginLink">
               <span>Acessar</span>
             </a>
           </div>
           <div class="gallery--card col-md-3">
             <h3 class="gallery--card-title">Recargas</h3>
             <p class="gallery--card-text">Todas as operadoras sem custo adicional.</p>
-            <a class="gallery--card-button" href="login.html">
+            <a class="gallery--card-button loginLink">
               <span>Acessar</span>
             </a>
           </div>
           <div class="gallery--card col-md-3">
             <h3 class="gallery--card-title">Investimentos</h3>
             <p class="gallery--card-text">Seu dinheiro rendendo mais que a poupança sem esforço.</p>
-            <a class="gallery--card-button" href="login.html">
+            <a class="gallery--card-button loginLink">
               <span>Acessar</span>
             </a>
           </div>
           <div class="gallery--card col-md-3">
             <h3 class="gallery--card-title">CriptoMoedas</h3>
             <p class="gallery--card-text">O futuro do dinheiro junto com você.</p>
-            <a class="gallery--card-button" href="login.html">
+            <a class="gallery--card-button loginLink">
               <span>Acessar</span>
             </a>
           </div>
@@ -110,6 +111,18 @@ let Home = {
     return view;
   },
   after_render: async () => {
+
+    const registerButton =  '' || document.getElementById('homeRegisterLink');
+    registerButton && registerButton.addEventListener('click', () => {
+      redirectTo('signup');
+    })
+
+    const loginLinks =     '' || document.querySelectorAll('.loginLink');
+    loginLinks.forEach(loginLink => {
+      loginLink.addEventListener('click', () => {
+        redirectTo('login');
+      })
+    });
   }
 }
 
