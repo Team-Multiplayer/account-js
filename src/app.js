@@ -8,7 +8,7 @@ import Error404 from './views/pages/Error404.js';
 import Header from './views/components/Nav.js';
 import Footer from './views/components/Footer.js';
 // Funções úteis
-import Utils from './service/Utils.js';
+import { parseRequestURL } from './service/Utils.js';
 
 // rotas da aplicação
 let routes = {
@@ -26,7 +26,7 @@ const router = async () => {
   await Header.after_render();
 
   // monta a página de acordo com a url
-  let request = Utils.parseRequestURL();
+  let request = parseRequestURL();
   let parseURL = (request.resource ? '/' + request.resource : '/') + (request.verb ? '/' + request.verb : '')
   let page = routes[parseURL] ? routes[parseURL] : Error404;
   const content = null || document.getElementById('container');
