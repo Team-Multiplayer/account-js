@@ -4,6 +4,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const pathToMainJs = require.resolve("./src/app.js");
 const pathToIndexCss = require.resolve("./src/css/style.css");
+const pathToDashCss = require.resolve("./src/css/dash.styles.css");
+const pathToBurgerCss = require.resolve("./src/css/hamburger.css");
 const pathToIndexHtml = require.resolve("./src/index.html");
 const pathToBanner = require.resolve("./src/img/banner.jpg");
 const pathToBannerCrypto = require.resolve("./src/img/banner-crypto.jpg");
@@ -19,6 +21,8 @@ module.exports =  {
     pathToMainJs,
     pathToIndexHtml,
     pathToIndexCss,
+    pathToDashCss,
+    pathToBurgerCss,
     pathToBanner,
     pathToBannerCrypto,
     pathToBannerMobile,
