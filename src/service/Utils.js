@@ -14,11 +14,13 @@ const parseRequestURL = () => {
   return request;
 }
 
-const inputValid =  (obj) => {
+// muda as classes css para um input válido
+const inputValid = (obj) => {
   obj.classList.remove('is-invalid');
   obj.classList.add('is-valid');
 }
 
+// muda as classes css para um input inválido
 const inputInvalid = (obj) => {
   obj.classList.remove('is-valid');
   obj.classList.add('is-invalid');
