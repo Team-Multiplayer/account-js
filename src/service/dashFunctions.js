@@ -1,28 +1,31 @@
 import baseURL from './baseURL.js';
 import {dashBoardParam, planosContaParam, pagamentoParam, transferenciaParam } from './params.js';
 
-const userData = JSON.parse(localStorage.getItem('@usuario'));
-const token = localStorage.getItem('@token');
-console.log(userData);
-let defaultHeader = {
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": token
+export const setUserInformation = async () => {
+  const userData = await JSON.parse(localStorage.getItem('@usuario'));
+  const token = localStorage.getItem('@token');
+  let defaultHeader = {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": token
+    }
   }
+
+  return {storagedInfo: {userData, defaultHeader}};
 }
 
-export const getProfile = () => {
+export const getProfile = (user) => {
   const userInfo = {
-    nome: userData.nome,
-    id: userData.id,
-    saldo: userData.saldo
+    nome: user.userData.nome,
+    id: user.userData.id,
+    saldo: user.userData.saldo
   }
-  return userData;
+  return userInfo;
 }
 
 // get request para lancamentos/planos-conta
-export const getPlanosConta = async () => {
-  const response = await axios.get(`${baseURL}${planosContaParam}${userData.login}`, defaultHeader);
+export const getPlanosConta = async (user) => {
+  const response = await axios.get(`${baseURL}${planosContaParam}${user.userData.login}`, user.defaultHeader);
   console.log(response.data)
 
   const conteudo = response.data.map(plano => {
@@ -42,8 +45,9 @@ export const getPlanosConta = async () => {
 
 
 // GET request para Dashboard endpoint.
-export const getDashboard = async () => {
-const response = await axios.get(`${baseURL}${dashBoardParam}${userData.login}`, defaultHeader);
+export const getDashboard = async (user) => {
+  console.log(user)
+const response = await axios.get(`${baseURL}${dashBoardParam}${user.userData.login}`, user.defaultHeader);
 console.log(response.data);
   const {contaBanco, contaCredito} = response.data;
   const saldo = contaBanco.saldo.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -89,6 +93,7 @@ export const errorMessage = () => {
 // PAGAMENTOS
 
 export const fazTransferencia = async (data) => {
+  const { storagedInfo: { defaultHeader } } = await setUserInformation();
   const response = await axios.post(`${baseURL}${transferenciaParam}`, data, defaultHeader);
   if (response.status === 200) {
     console.log('Transferencia realizada com sucesso!');
@@ -101,6 +106,7 @@ export const fazTransferencia = async (data) => {
 
 
 export const fazPagamento = async (data) => {
+  const { storagedInfo: { defaultHeader }}  = await setUserInformation();
   const response = await axios.post(`${baseURL}${pagamentoParam}`, data, defaultHeader);
 
   if (response.status === 200) {

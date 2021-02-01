@@ -4,6 +4,7 @@ import {
   fazTransferencia, 
   fazPagamento, 
   getProfile, 
+  setUserInformation,
   successMessage,
  } from '../../service/dashFunctions.js';
 import { modalPagamentos, modalTransferencias } from '../components/modal.js';
@@ -11,9 +12,10 @@ import profileImg from '../../img/profile.png';
 
 let Dash = {
   render: async () => {
-    let tableContent = await getDashboard();
-    let tabelaPlanos = await getPlanosConta();
-    let profileInfo = getProfile();
+    const { storagedInfo } = await setUserInformation();
+    let tableContent = await getDashboard(storagedInfo);
+    let tabelaPlanos = await getPlanosConta(storagedInfo);
+    let profileInfo = getProfile(storagedInfo);
     let view = `
       ${modalPagamentos}
       ${modalTransferencias}
