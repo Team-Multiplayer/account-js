@@ -86,15 +86,20 @@ export const fazTransferencia = async (data) => {
   await axios.post(`${baseURL}${transferenciaParam}`, data, defaultHeader);
 
   console.log('Transferencia realizada com sucesso!');
-
 }
 
 export const fazPagamento = async (data) => {
-  await axios.post(`${baseURL}${pagamentoParam}`, data, defaultHeader)
+  await axios.post(`${baseURL}${pagamentoParam}`, data, defaultHeader);
 
   console.log('Pagamento realizando com sucesso!');
 }
 
-
-
+export const successMessage = (child, parent, icon) => {
+  const childSpan = document.getElementById(child);
+  const parentButton = document.getElementById(parent);
+  const successIcon = document.getElementById(icon);
+  parentButton.removeChild(childSpan);
+  parentButton.appendChild(successIcon);
+  successIcon.classList.remove('hide-icon');
+}
 

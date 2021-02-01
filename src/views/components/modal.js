@@ -2,7 +2,8 @@ let modalPagamentos = `
 
   <!-- Modal de Pagamentos -->
   <div class="filter-hidden" id="paymentFilter">
-    <div class="transfer--modal" id="paymentModal">
+  
+  <div class="transfer--modal" id="paymentModal">
       <h3 class="fw-bold">transferir</h3>
       <form>
         <div class="mb-3">
@@ -27,12 +28,13 @@ let modalPagamentos = `
         </div>
       </form>
       <div class="d-flex justify-content-end mt-5">
-        <button type="button" class="gallery--card-button me-4" id="cancelPayment">
+        <button type="button" class="modal--button-cancel me-4" id="cancelPayment">
           <span class="text-danger fw-bold">Cancelar</span>
         </button>
-        <button type="button" class="gallery--card-button" id="confirmPayment">
-          <span class="text-success fw-bold">Pagar</span>
-        </button>
+        <button type="button" class="modal--button-ok" id="confirmPayment">
+          <span class="text-success fw-bold" id="spanPagar">Pagar</span>
+          </button>
+          <i class="fas fa-check hide-icon" id="okIcon"></i>
       </div>
     </div>
   </div>
@@ -78,11 +80,11 @@ let modalTransferencias = `
           <input type="text" class="form-control" id="transferenciaValor">
         </div>
         <div class="d-flex justify-content-end pt-5">
-          <button class="gallery--card-button" type="button" id="cancelButton">
+          <button class="modal--button-cancel" type="button" id="cancelButton">
             <span class="text-danger fw-bold">Cancelar</span>
           </button>
-          <button class="gallery--card-button ms-3" type="button" id="transferOkButton">
-            <span class="text-success fw-bold">Transferir</span>
+          <button class="modal--button-ok ms-3" type="button" id="confirmTransfer">
+            <span class="text-success fw-bold" id="spanTransferir">Transferir</span>
           </button>
         </div>
       </form>

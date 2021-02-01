@@ -1,6 +1,12 @@
-import { getDashboard, getPlanosConta } from '../../service/dashFunctions.js';
+import { 
+  getDashboard, 
+  getPlanosConta, 
+  fazTransferencia, 
+  fazPagamento, 
+  getProfile, 
+  successMessage,
+ } from '../../service/dashFunctions.js';
 import { modalPagamentos, modalTransferencias } from '../components/modal.js';
-import { fazPagamento, fazTransferencia, getProfile } from '../../service/dashFunctions';
 import profileImg from '../../img/profile.png';
 
 let Dash = {
@@ -99,7 +105,7 @@ let Dash = {
           </tbody>
         </table>
 
-        <table class="table table-striped caption-top">
+        <table class="table table-striped table-hover caption-top">
           <caption class="fw-bold purple--text">Conta Crédito</caption>
           <thead>
             <tr>
@@ -275,10 +281,11 @@ let Dash = {
       if (!classe && !event) {
         document.getElementById(filtro).classList.remove('show-filter');
         document.getElementById(tipo).classList.remove('show-modal');
-      }
-      if (event.target.className.includes(classe)) {
-        document.getElementById(filtro).classList.remove('show-filter');
-        document.getElementById(tipo).classList.remove('show-modal');
+      } else {
+        if (event.target.className.includes(classe)) {
+          document.getElementById(filtro).classList.remove('show-filter');
+          document.getElementById(tipo).classList.remove('show-modal');
+        }
       }
     }
 
@@ -302,27 +309,24 @@ let Dash = {
     })
 
     // trata a transfêrencia.
-    const confirmaTransferencia = document.getElementById('transferOkButton')
+    const confirmaTransferencia = document.getElementById('confirmTransfer')
     .addEventListener('click', () => {
-      // const conta =         document.getElementById('transferenciaConta').value;
-      // const contaDestino =  document.getElementById('transferenciaDestino').value;
-      // const data =          document.getElementById('transferenciaData').value;
-      // const descricao =     document.getElementById('transferenciaDescricao').value;
-      // const login =         document.getElementById('transferenciaLogin').value;
-      // const planoConta =    document.getElementById('transferenciaPlano').value;
-      // const valor =         document.getElementById('transferenciaValor').value;
-
       const payload = {
          conta :         document.getElementById('transferenciaConta').value,
-         contaDestino:  document.getElementById('transferenciaDestino').value,
-         data:          document.getElementById('transferenciaData').value,
-         descricao:     document.getElementById('transferenciaDescricao').value,
-         login:       document.getElementById('transferenciaLogin').value,
-         planoConta:    document.getElementById('transferenciaPlano').value,
-         valor:      document.getElementById('transferenciaValor').value
+         contaDestino:   document.getElementById('transferenciaDestino').value,
+         data:           document.getElementById('transferenciaData').value,
+         descricao:      document.getElementById('transferenciaDescricao').value,
+         login:          document.getElementById('transferenciaLogin').value,
+         planoConta:     document.getElementById('transferenciaPlano').value,
+         valor:          document.getElementById('transferenciaValor').value
  
       }
+
       fazTransferencia(payload);
+      successMessage('spanTransferir', 'confirmTransfer', 'okIcon');
+      setTimeout(() => {
+        window.location.reload();
+      }, 300);
     })
 
     // Fecha o modal de transf.;
@@ -338,17 +342,10 @@ let Dash = {
       document.getElementById('transferModal').classList.remove('show-modal');
     })
 
-
     // realiza um pagamento.
     const confirmaPagamento = document.getElementById('confirmPayment');
 
     confirmaPagamento.addEventListener('click', () => {
-      // const descricao =     document.getElementById('pagamentoDescricao').value;
-      // const id =            document.getElementById('pagamentoId')       .value;
-      // const login =         document.getElementById('pagamentoLogin')    .value;
-      // const padrao =        document.getElementById('pagamentoPadrao')   .value;
-      // const tipoMovimento = document.getElementById('pagamentoTipo')     .value;
-      
       const payload = {
         descricao:      document.getElementById('pagamentoDescricao').value,
         id:             document.getElementById('pagamentoId').value,
@@ -358,9 +355,11 @@ let Dash = {
       }
       
       fazPagamento(payload);
+      successMessage('spanPagar', 'confirmPayment', 'okIcon');
+      setTimeout(() => {
+        window.location.reload();
+      }, 300);
     });
-
-
   }
 }
 

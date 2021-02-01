@@ -315,7 +315,8 @@ p {
   }
 }
 
-.gallery--card-button {
+.modal--button-cancel,
+.modal--button-ok {
   position: relative;
   background: transparent;
   display: flex;
@@ -330,45 +331,46 @@ p {
   text-decoration: none;
 }
 
-.gallery--card-button span {
+.modal--button-cancel span,
+.modal--button-ok span {
   color: #000;
   position: relative;
   z-index: 50;
 }
 
-.gallery--card:hover span {
-  color: #000;
-}
-
-.gallery--card-button:before {
+.modal--button-cancel:before,
+.modal--button-ok:before {
   content: "";
   position: absolute;
-  top: 3px;
+  top: 0;
   left: 0;
   background: #fff;
   width: 90%;
-  height: 100%;
+  height: calc(100% + 3px);
   transform: scaleX(1);
   transition: 0.2s ease-in-out;
 }
 
-.gallery--card-button:hover:before {
+.modal--button-cancel:hover:before,
+.modal--button-ok:hover:before {
   transform: scaleX(0);
 }
 
-.gallery--card-button:after {
+.modal--button-cancel:after,
+.modal--button-ok:after {
   content: "";
   position: absolute;
-  bottom: 3px;
+  bottom: 0;
   right: 0;
   background: #fff;
   width: 90%;
-  height: 100%;
+  height: calc(100% + 3px);
   transform: scaleX(1);
   transition: 0.2s ease-in-out;
 }
 
-.gallery--card-button:hover:after {
+.modal--button-cancel:hover:after,
+.modal--button-ok:hover:after {
   transform: scaleX(0);
 }
 
@@ -724,4 +726,12 @@ p {
   align-items: center;
   width: auto;
   margin-right: 10%;
+}
+
+/* ANIMATIONS */
+
+/* SUCCESS MESSAGE */
+
+.hide-icon {
+  display: none;
 }

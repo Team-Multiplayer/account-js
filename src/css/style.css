@@ -359,7 +359,7 @@ button, a {
 }
 
 .gallery--card {
-  background: transparent;
+  /* background: transparent; */
   display: flex;
   flex-direction: column;
   align-items: start;
