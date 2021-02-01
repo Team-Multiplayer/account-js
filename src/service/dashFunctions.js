@@ -31,7 +31,7 @@ export const getPlanosConta = async () => {
       <tr>
         <th scope="row">01/02/2021</th>
         <td>${plano.descricao}</td>
-        <td class="red--text">${plano.tipoMovimento}</td>
+        <td class="marine--text">${plano.tipoMovimento}</td>
       </tr>
       `
     )
@@ -54,7 +54,7 @@ console.log(response.data);
       <tr>
         <th scope="row">01/02/2021</th>
         <td>${element.descricao}</td>
-        <td class="green--text">${element.valor}</td>
+        <td class="marine--text">${element.valor}</td>
       </tr>
       `
     )
@@ -68,7 +68,7 @@ console.log(response.data);
       <tr>
         <th scope="row">01/02/2021</th>
         <td>${element.descricao}</td>
-        <td class="green--text">${element.valor}</td>
+        <td class="marine--text">${element.valor}</td>
       </tr>
       `
     )
@@ -80,18 +80,34 @@ console.log(response.data);
 
 // ******************* Pagamentos e Transferências ******************
 
+export const errorMessage = () => {
+
+
+}
+
+
 // PAGAMENTOS
 
 export const fazTransferencia = async (data) => {
-  await axios.post(`${baseURL}${transferenciaParam}`, data, defaultHeader);
+  const response = await axios.post(`${baseURL}${transferenciaParam}`, data, defaultHeader);
+  if (response.status === 200) {
+    console.log('Transferencia realizada com sucesso!');
+    window.location.reload();
+  } else {
 
-  console.log('Transferencia realizada com sucesso!');
+  }
+
 }
 
-export const fazPagamento = async (data) => {
-  await axios.post(`${baseURL}${pagamentoParam}`, data, defaultHeader);
 
-  console.log('Pagamento realizando com sucesso!');
+export const fazPagamento = async (data) => {
+  const response = await axios.post(`${baseURL}${pagamentoParam}`, data, defaultHeader);
+
+  if (response.status === 200) {
+    console.log('Pagamento realizando com sucesso!');
+    window.location.reload();
+  }  
+  
 }
 
 export const successMessage = (child, parent, icon) => {

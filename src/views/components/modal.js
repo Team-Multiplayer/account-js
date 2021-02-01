@@ -12,7 +12,7 @@ let modalPagamentos = `
         </div>
         <div class="mb-3">
           <label for="pagamentoId" class="form-label">ID</label>
-          <input type="password" class="form-control" id="pagamentoId">
+          <input type="text" class="form-control" id="pagamentoId">
         </div>
         <div class="mb-3">
           <label for="pagamentoLogin" class="form-label">Login</label>
@@ -20,7 +20,7 @@ let modalPagamentos = `
         </div>
         <div class="mb-3">
           <label for="pagamentoPadrao" class="form-label">Padrão</label>
-          <input type="password" class="form-control" id="pagamentoPadrao">
+          <input type="text" class="form-control" id="pagamentoPadrao">
         </div>
         <div class="mb-3">
           <label for="pagamentoTipo" class="form-label">Tipo de Movimentação</label>

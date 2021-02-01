@@ -322,11 +322,9 @@ let Dash = {
  
       }
 
-      fazTransferencia(payload);
-      successMessage('spanTransferir', 'confirmTransfer', 'okIcon');
-      setTimeout(() => {
-        window.location.reload();
-      }, 300);
+      // successMessage('spanTransferir', 'confirmTransfer', 'okIcon');
+      fechaModal('transferModal', 'filter');
+        fazTransferencia(payload);
     })
 
     // Fecha o modal de transf.;
@@ -354,11 +352,9 @@ let Dash = {
         tipoMovimento:  document.getElementById('pagamentoTipo').value
       }
       
+      // successMessage('spanPagar', 'confirmPayment', 'okIcon');
+      fechaModal('paymentModal', 'paymentFilter');
       fazPagamento(payload);
-      successMessage('spanPagar', 'confirmPayment', 'okIcon');
-      setTimeout(() => {
-        window.location.reload();
-      }, 300);
     });
   }
 }
