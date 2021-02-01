@@ -4,7 +4,7 @@ let modalPagamentos = `
   <div class="filter-hidden" id="paymentFilter">
   
   <div class="transfer--modal" id="paymentModal">
-      <h3 class="fw-bold">transferir</h3>
+      <h3 class="fw-bold">Pagamento</h3>
       <form>
         <div class="mb-3">
           <label for="pagamentoDescricao" class="form-label">Descrição</label>
